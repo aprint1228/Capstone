@@ -1,0 +1,9 @@
+library(randomForest)
+completehappy<- totalhappy[complete.cases(totalhappy),]
+
+train<- sample(nrow(completehappy), 0.7*nrow(completehappy), replace = FALSE)
+trainset<- completehappy[train,]
+testset<- completehappy[-train,]
+
+model1<- randomForest(Happiness.Score~., data=trainset, importance= TRUE)
+model1
